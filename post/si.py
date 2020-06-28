@@ -50,8 +50,6 @@ def send_email():
     smtpObj.quit() # Всё!
 send = Button(window, text="Отправить письмо", command=send_email)
 send.grid(column=1,row=7)
-logbtn = Button(window, text="Сохранить лог", command=log)
-logbtn.grid(column=2,row=7)
 # Конец размещения.
 window.mainloop()
 
