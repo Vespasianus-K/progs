@@ -30,7 +30,7 @@ email_addressk = Entry(window, width=45)
 email_addressk.grid(column=1, row=5)
 email_t = Label(window, text="Введите текст письма.")
 email_t.grid(column=0, row=6)
-email_textk = Entry(window, width=60)
+email_textk = Text(width=75, height=15)
 email_textk.grid(column=1, row=6)
 # Да, тут немножко некрасиво, но для получения значений из полей - только так. Над красотой кода поработаю потом.
 
@@ -40,7 +40,7 @@ def send_email():
     email_sender = email_senderk.get()
     email_password = email_passwordk.get()
     email_address = email_addressk.get()
-    email_text = email_textk.get()
+    email_text = email_textk.get("1.0",'end-1c')
     smtpObj = smtplib.SMTP(email_smtp, 587) 
     smtpObj.starttls() # TLS. Можете убрать, если хотите.
     smtpObj.login(email_sender, email_password)
