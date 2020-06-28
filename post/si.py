@@ -3,7 +3,10 @@
 from tkinter import *
 import smtplib
 from time import sleep
-
+import datetime
+# Определение времени
+today = datetime.datetime.today()
+# Создание окна
 window = Tk()
 window.title("Почтовый клиент Si-5 (бета-версия)")
 int1 = Label(window, text="Почтовый клиент Si-5 приветствует вас.")  
@@ -33,14 +36,13 @@ email_t.grid(column=0, row=6)
 email_textk = Text(width=75, height=15)
 email_textk.grid(column=1, row=6)
 # Да, тут немножко некрасиво, но для получения значений из полей - только так. Над красотой кода поработаю потом.
-
+email_smtp = email_smtpk.get()
+email_sender = email_senderk.get()
+email_password = email_passwordk.get()
+email_address = email_addressk.get()
+email_text = email_textk.get("1.0",'end-1c')
 # Вынужден поместить тут, т.к. иначе кнопка не будет работать.
 def send_email():
-    email_smtp = email_smtpk.get()
-    email_sender = email_senderk.get()
-    email_password = email_passwordk.get()
-    email_address = email_addressk.get()
-    email_text = email_textk.get("1.0",'end-1c')
     smtpObj = smtplib.SMTP(email_smtp, 587) 
     smtpObj.starttls() # TLS. Можете убрать, если хотите.
     smtpObj.login(email_sender, email_password)
@@ -48,6 +50,8 @@ def send_email():
     smtpObj.quit() # Всё!
 send = Button(window, text="Отправить письмо", command=send_email)
 send.grid(column=1,row=7)
+logbtn = Button(window, text="Сохранить лог", command=log)
+logbtn.grid(column=2,row=7)
 # Конец размещения.
 window.mainloop()
 
